@@ -8,12 +8,12 @@ import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface MovieDBService {
-    @GET("{id}/")
+    @GET("{id}?")
     fun getMovieDetail(@Path("id")movieId:Int,
-                       @Query("apiKey")apiKey:String): Call<Movie>
+                       @Query("api_key")apiKey:String): Call<Movie>
 
-    @GET("{id}/")
+    @GET("{id}/similar?")
     fun getSimilarMovies(@Path("id")movieId:Int,
-                         @Query("apiKey")apiKey:String,
+                         @Query("api_key")apiKey:String,
                          @Query("n_page") numberPage:Int):Call<SimilarMovies>
 }

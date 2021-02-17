@@ -8,7 +8,7 @@ data class Movie(
     @SerializedName("original_title")
     val OriginalTitle:String,
     @SerializedName("popularity")
-    val Popularity:Int,
+    val Popularity:Double,
     @SerializedName("vote_count")
     val Vote_Count:Int,
     @SerializedName("poster_path")
