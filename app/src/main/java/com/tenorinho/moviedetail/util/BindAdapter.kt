@@ -1,9 +1,10 @@
 package com.tenorinho.moviedetail.util
 
-import android.net.Uri
 import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
+import com.bumptech.glide.Glide
+//import com.bumptech.glide.load.engine.DiskCacheStrategy
 
 class BindAdapter{
     companion object{
@@ -18,6 +19,17 @@ class BindAdapter{
         @BindingAdapter("imgSource")
         @JvmStatic fun setImageResource(img: ImageView, res:Int){
             img.setImageResource(res)
+        }
+        @BindingAdapter("imgSource")
+        @JvmStatic fun setImageUrl(img: ImageView, url:String?){
+            if(url != null || !url.isNullOrBlank()){
+                Glide
+                    .with(img.context)
+                    .load(url)
+                    .centerCrop()
+                    //.diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .into(img)
+            }
         }
     }
 }

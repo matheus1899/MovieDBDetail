@@ -19,30 +19,30 @@ class MainActivityViewModel() : ViewModel() {
     var similarMovies = MutableLiveData<SimilarMovies>()
     var error = MutableLiveData<Throwable>()
     var isLiked = MutableLiveData<Boolean>()
-    var imgLikeRes = ObservableInt(R.drawable.ic_baseline_favorite_24)
+    var imgLikeRes = ObservableInt(R.drawable.ic_baseline_favorite_border_24)
     var popularityString = MutableLiveData<String>()
     var likesString = MutableLiveData<String>()
-
+    var imgMoviePoster = MutableLiveData<String>()
 
     init {
         isLiked.value = false
         loadMovie()
         loadSimilarMovies()
     }
-
     fun like(){
         isLiked.value = !isLiked.value!!
         if(isLiked.value!!){
-            imgLikeRes.set(R.drawable.ic_baseline_favorite_24_red)
+            imgLikeRes.set(R.drawable.ic_baseline_favorite_24)
         }
         else{
-            imgLikeRes.set(R.drawable.ic_baseline_favorite_24)
+            imgLikeRes.set(R.drawable.ic_baseline_favorite_border_24)
         }
     }
     private fun bindMovie(m:Movie?){
         movie.value = m
         popularityString.value = movie.value?.Popularity.toString()+" views"
         likesString.value = getLikesText(movie.value?.Vote_Count ?: 0)+" Likes"
+        imgMoviePoster.value = "https://image.tmdb.org/t/p/w500"+movie.value?.PosterPath
     }
     private fun bindSimilarMovies(s:SimilarMovies?){
         similarMovies.value = s

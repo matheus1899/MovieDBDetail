@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.tenorinho.moviedetail.R
 import com.tenorinho.moviedetail.data.model.MovieFromSimilarList
 import com.tenorinho.moviedetail.data.model.SimilarMovies
@@ -34,6 +36,11 @@ class SimilarMoviesAdapter(var similarMovies: SimilarMovies?):RecyclerView.Adapt
         fun bind(s:MovieFromSimilarList?){
             txtTitle.text = s?.OriginalTitle ?: "NULL"
             txtRelease.text = s?.ReleaseDate ?: "NULL"
+            Glide
+                .with(imgPoster.context)
+                .load("https://image.tmdb.org/t/p/w200"+s?.PosterPath)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .into(imgPoster)
         }
     }
     fun updateList(similarMovies: SimilarMovies?){
